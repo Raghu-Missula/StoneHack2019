@@ -6,10 +6,6 @@ import sys
 
 app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
-    return 'Hello from Flask!'
-
 @app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json(force=True)
