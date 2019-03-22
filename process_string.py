@@ -9,6 +9,7 @@ logging.basicConfig(level=logging.WARNING)
 logger = logging.getLogger(__name__)
 
 FREQ_OUT = {"day":60*60*24, "week":60*60*24*7, "hour":60*60}
+FREQ_OUT.update({"hours":60*60, "days":60*60*24, "weeks":60*60*24*7})
 TIMESTAMP_LIMIT = 20
     
 def main():
