@@ -1,7 +1,5 @@
 # StoneHack2019
-Repository for the Stonehill Hackathon 2019
-
-Team members: Srivatsava Missula, Varun Giridhar, Dhruv Venkataraman
+Repository for the Stonehill Hackathon 2019 (Srivatsava Missula, Varun Giridhar, Dhruv Venkataraman)
 
 __Themes:__ Healthcare
 
