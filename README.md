@@ -18,7 +18,7 @@ Our project uses an __iOS application__ (coded in Swift) to take user input in t
 
 The image is put through __OCR__ (Optical Character Recognition). Medications are compared with an internal database (of stockpiled medicine) to return descriptions, expiration dates, recommended dosages, and where to find it.
 
-Prescriptions are converted by OCR and sent to a __Firebase__ database. A python server retrieves this data, and uses it to map the medications to timestamps.
+Prescriptions are converted by OCR and sent to a __Firebase__ database. A python server retrieves this data, and uses it to map the medications to timestamps, via __NLP__.
 This data is sent back to the app, and linked to a user's Google Calendar, SMS Messenger and even Google Home, creating an active schedule to ensure appropriate medication.
 
 ## Components
