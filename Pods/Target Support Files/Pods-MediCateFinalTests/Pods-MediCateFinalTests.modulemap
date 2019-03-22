@@ -1,0 +1,6 @@
+framework module Pods_MediCateFinalTests {
+  umbrella header "Pods-MediCateFinalTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
