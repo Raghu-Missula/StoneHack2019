@@ -10,12 +10,15 @@ logger = logging.getLogger(__name__)
 
 FREQ_OUT = {"day":60*60*24, "week":60*60*24*7, "hour":60*60}
 FREQ_OUT.update({"hours":60*60, "days":60*60*24, "weeks":60*60*24*7})
+MATCH = [["once","1 time"], ["twice","2 times"], ["thrice","3 times"]]
 
 def get_timestamps(string_raw, limit):
   FREQ_OUT = {"day":60*60*24, "week":60*60*24*7, "hour":60*60}
   FREQ_OUT.update({"hours":60*60, "days":60*60*24, "weeks":60*60*24*7})
 
   string = string_raw.replace(" a ", " every ")
+  for (x, y) in MATCH:
+    string = string.replace(x, y)
   TIMESTAMP_LIMIT = int(limit)
   word_lst = [x.lower() for x in string.split()]
   EXT_INCR = 0.0
@@ -53,7 +56,7 @@ def get_timestamps(string_raw, limit):
 
   logging.debug("times_lst = " + str(times_lst))
   for time_val in times_lst:
-    print time.asctime(time.localtime(time_val))
+    print (time.asctime(time.localtime(time_val)))
 
 if __name__ == "__main__":
   main()
