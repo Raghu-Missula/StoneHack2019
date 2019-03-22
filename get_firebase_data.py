@@ -1,7 +1,8 @@
 import argparse
 import requests
 import time, random, sys, json
-
+from firebase import firebase
+fb = firebase.FirebaseApplication("https://stonehill-hackathon.firebaseio.com/")
 
 FREQ_OUT = {"day":60*60*24, "week":60*60*24*7, "hour":60*60}
 FREQ_OUT.update({"hours":60*60, "days":60*60*24, "weeks":60*60*24*7})
@@ -23,18 +24,21 @@ def get_timestamps(string_raw, limit):
     for index in range(len(word_lst)):
       word = word_lst[index]
       if word in FREQ_OUT:
-	EXT_INCR = FREQ_OUT[word]
+        EXT_INCR = FREQ_OUT[word]
 
     for index in range(len(word_lst)):
       word = word_lst[index]
       if word.isdigit():
-	if word_lst[index+1] in ["time", "times"]:
-  	  INT_INCR = int(word)
-	elif word_lst[index+1] in FREQ_OUT:
-	  EXT_INCR *= int(word)
+        if word_lst[index+1] in ["time", "times"]:
+          INT_INCR = int(word)
+        elif word_lst[index+1] in FREQ_OUT:
+          EXT_INCR *= int(word)
 
   lcl = time.localtime()
-  feed = [lcl[0], lcl[1], lcl[2], lcl[3], 0, 0, lcl[6], lcl[7], lcl[8]]
+  if lcl[4] == 59:
+    lcl[4] = -1
+    lcl[3] += 1
+  feed = (lcl[0], lcl[1], lcl[2], lcl[3], lcl[4]+1, 0, lcl[6], lcl[7], lcl[8])
   base_time_sec = time.mktime(feed)
   times_lst = [base_time_sec]
 
@@ -90,7 +94,8 @@ def main():
   for medic in in_prescr:
     to_jsonify.update({medic:get_timestamps(fn_dict[medic], 20)})
 
-  return to_jsonify
+  upload_val = json.dumps(to_jsonify)
+  fb.put("", "timestamps", upload_val)
 
 if __name__ == "__main__":
   print (main())
