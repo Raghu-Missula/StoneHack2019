@@ -1,5 +1,4 @@
 
-# A very simple Flask Hello World app for you to get started with...
 
 from flask import Flask, make_response, request, jsonify
 import sys
