@@ -9,6 +9,9 @@ __Project description:__ OCR driven application for identifying medications and 
 We face the common problem that incorrect or poorly informed administration of medication often leads to health complications.
 
 ## Implementation
-Our project uses an iOS application coded in Swift to take user input and, in turn, provide reminders and prompts based on scanned prescriptions. Data to identify medications and ascertain their dosages are stored in a Firebase Database.
+Our project uses an iOS application (coded in Swift) to take user input in the form of images: either prescriptions or medications themselves.
+Both of these are put through OCR (Optical Character Recognition). Medications are compared with an internal database to return values regarding dosage, and ailments that it treats.
+Prescriptions are converted by OCR and sent to a Firebase Database. A python server retrieves this data, and uses it to map the medications to timestamps.
+This data is sent back to the app, and is also linked to Google Assistant, so you can get alarms, notifications, and reminders.
 
 ## Components
