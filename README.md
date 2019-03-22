@@ -3,7 +3,7 @@
 
 __Themes:__ Healthcare
 
-__Project description:__ OCR driven application for identifying medications and storing prescriptions
+__Project description:__ OCR driven application for identifying medications and prompting prescriptions
 
 ## Problem statement
 We face the common problem that incorrect or poorly informed administration of medication often leads to health complications.
