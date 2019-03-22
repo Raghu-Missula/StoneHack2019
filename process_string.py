@@ -10,16 +10,13 @@ logger = logging.getLogger(__name__)
 
 FREQ_OUT = {"day":60*60*24, "week":60*60*24*7, "hour":60*60}
 FREQ_OUT.update({"hours":60*60, "days":60*60*24, "weeks":60*60*24*7})
-TIMESTAMP_LIMIT = 20
-    
-def main():
-  parser = argparse.ArgumentParser()
-  parser.add_argument("-s", "--string", required=True, help="String to be processed by program")
-  parser.add_argument("-l", "--limit", required=True, help="How many timestamps do you want?")
-  args = vars(parser.parse_args())
 
-  string = args['string'].replace(" a ", " every ")
-  TIMESTAMP_LIMIT = int(args["limit"])
+def get_timestamps(string_raw, limit):
+  FREQ_OUT = {"day":60*60*24, "week":60*60*24*7, "hour":60*60}
+  FREQ_OUT.update({"hours":60*60, "days":60*60*24, "weeks":60*60*24*7})
+
+  string = string_raw.replace(" a ", " every ")
+  TIMESTAMP_LIMIT = int(limit)
   word_lst = [x.lower() for x in string.split()]
   EXT_INCR = 0.0
   INT_INCR = 1.0
@@ -51,6 +48,8 @@ def main():
   if EXT_INCR > 0:
     while len(times_lst) < TIMESTAMP_LIMIT:
       times_lst.append(times_lst[-1] + EXT_INCR/INT_INCR)
+
+  return times_lst
 
   logging.debug("times_lst = " + str(times_lst))
   for time_val in times_lst:

@@ -1,6 +1,0 @@
-framework module Pods_MediCateFinal {
-  umbrella header "Pods-MediCateFinal-umbrella.h"
-
-  export *
-  module * { export * }
-}
